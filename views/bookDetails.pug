@@ -1,0 +1,14 @@
+extends layout
+
+block layout-content
+  div.p-3
+    h1 Book Details
+  div.card.shadow-xs
+    div.card-body
+      div.card-title
+        h2 #{book.Title}
+      div.card-text
+        p Author #{book.Author}
+        p Published by "#{book.Publisher}"
+        p #{book.DateOfPub.getUTCDate() +"-"+(book.DateOfPub.getUTCMonth()+1)+"-"+book.DateOfPub.getFullYear()}
+        p Price €#{book.Price}

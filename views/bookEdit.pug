@@ -1,0 +1,36 @@
+extends layout
+
+block layout-content
+  .container.mt-4
+    .row
+      .card.shadow-xs
+        .card-body
+          .card-title
+            h2 Edit book details:
+          .card-text
+            hr
+            form(method="post")
+              label.form-label.mt-2(for="titleInput") Title
+              input.form-control(type="text" name="titleInput" id="titleInput" value=book.Title required)
+              label.form-label.mt-2(for="authorInput") Author
+              input.form-control(type="text" name="authorInput" id="authorInput" value=book.Author required)
+              label.form-label.mt-2(for="publisherInput") Publisher
+              input.form-control(type="text" name="publisherInput" id="publisherInput" value=book.Publisher required)
+              label.form-label.mt-2(for="dateInput") Date
+              - var dd = book.DateOfPub.getDate();
+              - var mm = book.DateOfPub.getMonth()+1;
+              - const yyyy = book.DateOfPub.getFullYear();
+              - dd = dd < 10 ? "0" + dd : dd;
+              - mm = mm < 10 ? "0" + mm : mm;
+              - const dateString = yyyy + "-" + mm + "-" + dd;
+              input.form-control(type="date" name="dateInput" id="dateInput" value=dateString required pattern="\d{4}-\d{2}-\d{2}")
+              label.form-label.mt-2(for="priceInput") Price
+              input.form-control(type="text" name="priceInput" id="priceInput" value=book.Price required)
+              label.form-label.mt-2(for="typeInput") Choose a type
+              select.form-select(aria-label="Book Type Select" name="typeInput" id="typeInput" required)
+                each bookType in bookTypes
+                  if bookType == book.Type
+                    option(value=bookType selected) #{bookType}
+                  else
+                    option(value=bookType) #{bookType}
+              button.float-end.mt-4.btn.btn-warning(type="submit") Update

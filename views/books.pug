@@ -1,0 +1,17 @@
+extends layout
+
+block layout-content
+  div.container-fluid.me-2.mt-4
+    a.m-2.btn.btn-success(href="/books/add") Add Book
+    div.row.row-cols-3
+      each book in books
+        div.col.mt-4
+          div.card
+            div.card-body
+              h1.card-title #{book.Title}
+              p.card-text Author: #{book.Author}
+              a(class="btn btn-primary" href="/books/" + book.Id) Details
+              div.float-end
+                a.ms-1.btn.btn-danger(href="/books/delete/" + book.Id) Remove
+                a.ms-1.btn.btn-warning(href="/books/edit/" + book.Id) Edit
+    

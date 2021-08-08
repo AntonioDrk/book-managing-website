@@ -1,0 +1,27 @@
+extends layout
+
+block layout-content
+  .container.mt-4
+    .row
+      .card.shadow-xs
+        .card-body
+          .card-title
+            h2 Enter book details:
+          .card-text
+            hr
+            form(method="post")
+              label.form-label.mt-2(for="titleInput") Title
+              input.form-control(type="text" name="titleInput" id="titleInput" required)
+              label.form-label.mt-2(for="authorInput") Author
+              input.form-control(type="text" name="authorInput" id="authorInput" required)
+              label.form-label.mt-2(for="publisherInput") Publisher
+              input.form-control(type="text" name="publisherInput" id="publisherInput" required)
+              label.form-label.mt-2(for="dateInput") Date
+              input.form-control(type="date" name="dateInput" id="dateInput" required pattern="\d{4}-\d{2}-\d{2}")
+              label.form-label.mt-2(for="priceInput") Price
+              input.form-control(type="text" name="priceInput" id="priceInput" required)
+              label.form-label.mt-2(for="typeInput") Choose a type
+              select.form-select(aria-label="Book Type Select" name="typeInput" id="typeInput" required)
+                each bookType in bookTypes
+                  option(value=bookType) #{bookType}
+              button.mt-4.btn.btn-success(type="submit") Create
